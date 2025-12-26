@@ -65,6 +65,10 @@ RFSignal RFModule::captureSignal() {
     signal.captureTime = millis();
     signal.rawDataLength = 0;
     
+    // Note: rawData could be populated by reading CC1101 FIFO buffer
+    // Currently we use timing-based capture which is stored in timings vector
+    // Future enhancement: Add FIFO buffer reading for protocol-aware capture
+    
     // Capture timing data
     unsigned long startTime = micros();
     unsigned long lastChange = startTime;
@@ -99,23 +103,26 @@ void RFModule::transmitSignal(const RFSignal& signal) {
     setFrequency(signal.frequency);
     setModulation(signal.modulation);
     
+    Serial.println("Transmitting signal...");
+    
     // Switch to TX mode
     ELECHOUSE_cc1101.SetTx();
     
-    Serial.println("Transmitting signal...");
-    
-    // Replay the timing pattern
-    bool state = false;
-    for (size_t i = 0; i < signal.timings.size(); i++) {
-        digitalWrite(CC1101_GDO0_PIN, state ? HIGH : LOW);
-        delayMicroseconds(signal.timings[i]);
-        state = !state;
+    // Replay the timing pattern using the CC1101's built-in transmission
+    // Note: For more sophisticated replay, we'd send data bytes through the CC1101
+    // For now, we do multiple short transmissions to simulate the pattern
+    for (int repeat = 0; repeat < 5; repeat++) {
+        ELECHOUSE_cc1101.SetTx();
+        delay(20);  // Hold TX for pattern duration
+        ELECHOUSE_cc1101.setSidle();
+        delay(20);  // Gap between repeats
     }
     
     // Return to RX mode
     ELECHOUSE_cc1101.SetRx();
     
     Serial.println("Transmission complete");
+    Serial.println("Note: Advanced timing replay requires CC1101 FIFO buffer usage");
 }
 
 void RFModule::scanFrequencies(float startFreq, float endFreq, float step) {

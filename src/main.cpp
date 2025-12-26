@@ -15,15 +15,15 @@ int currentMenuItem = 0;
 int maxMenuItems = 6;
 MenuState currentMenu = MENU_MAIN;
 
-// Signal storage
-RFSignal capturedSignal;
-std::vector<String> savedSignals;
-int selectedSignal = 0;
-
 // Button states
 bool buttonUpPressed = false;
 bool buttonDownPressed = false;
 bool buttonSelectPressed = false;
+
+// Cached saved signals list (loaded on demand)
+std::vector<String> savedSignals;
+int selectedSignal = 0;
+bool signalsListLoaded = false;
 
 // Function prototypes
 void handleMainMenu();
@@ -70,11 +70,8 @@ void setup() {
         // Continue anyway, just won't be able to save
     }
     
-    // Load saved signals list
-    savedSignals = storage.listSignals();
-    Serial.print("Found ");
-    Serial.print(savedSignals.size());
-    Serial.println(" saved signals");
+    // Note: Saved signals list will be loaded on demand when accessing saved signals menu
+    Serial.println("Storage ready - signals list will load on demand");
     
     // Configure button pins (using internal pull-ups)
     // Note: Actual button pins may vary - these are placeholders
@@ -176,6 +173,15 @@ void handleMainMenu() {
                 break;
                 
             case 1:  // Replay Signal
+                // Load signals list if not already loaded
+                if (!signalsListLoaded) {
+                    savedSignals = storage.listSignals();
+                    signalsListLoaded = true;
+                    Serial.print("Loaded ");
+                    Serial.print(savedSignals.size());
+                    Serial.println(" saved signals");
+                }
+                
                 if (savedSignals.size() > 0) {
                     currentMenu = MENU_SAVED_SIGNALS;
                     selectedSignal = 0;
@@ -194,6 +200,15 @@ void handleMainMenu() {
                 break;
                 
             case 3:  // Saved Signals
+                // Load signals list if not already loaded
+                if (!signalsListLoaded) {
+                    savedSignals = storage.listSignals();
+                    signalsListLoaded = true;
+                    Serial.print("Loaded ");
+                    Serial.print(savedSignals.size());
+                    Serial.println(" saved signals");
+                }
+                
                 currentMenu = MENU_SAVED_SIGNALS;
                 selectedSignal = 0;
                 display.showSavedSignals(selectedSignal);
@@ -237,7 +252,8 @@ void handleCaptureMode() {
                     
                     if (storage.saveSignal(capturedSignal, filename)) {
                         display.showStatus("Signal saved!");
-                        savedSignals = storage.listSignals();
+                        // Invalidate cache so list will be reloaded next time
+                        signalsListLoaded = false;
                     } else {
                         display.showStatus("Save failed!");
                     }

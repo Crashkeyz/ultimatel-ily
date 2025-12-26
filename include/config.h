@@ -18,6 +18,12 @@
 #define BUTTON_DOWN 1
 #define BUTTON_SELECT 2
 
+// Note: GPIO 0 is a boot strapping pin on ESP32-S3
+// If using GPIO 0 for BUTTON_UP causes issues with boot or upload,
+// change to a different GPIO that doesn't have special functions.
+// Safe alternatives: GPIO 3, 6, 7, 16, 17, 18, etc.
+// Avoid: GPIO 0 (boot), GPIO 46 (input only), GPIO 45 (strapping)
+
 // CC1101 Frequency Presets (in MHz)
 #define FREQ_315MHZ 315.0
 #define FREQ_433MHZ 433.92
