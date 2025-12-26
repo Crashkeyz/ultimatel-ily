@@ -1,0 +1,75 @@
+# Alert Configuration for Drone Detection
+# Configure audio and visual alerts
+
+[Audio Alerts]
+# Enable audio alerts
+enabled=true
+
+# Alert tone frequency (Hz)
+tone_frequency=1000
+
+# Alert duration (ms)
+alert_duration=200
+
+# Alert volume (0-100)
+volume=75
+
+# Different tones for different bands
+433mhz_tone=800
+915mhz_tone=1000
+1g2_tone=1200
+2g4_tone=1400
+5g8_tone=1600
+gps_tone=1800
+
+[Visual Alerts]
+# Enable LED/screen alerts
+enabled=true
+
+# Alert color (red, green, blue, yellow, white)
+alert_color=red
+
+# Blink rate (ms)
+blink_rate=500
+
+# Screen flash
+screen_flash=true
+
+# Show frequency on alert
+show_frequency=true
+
+[Alert Conditions]
+# Minimum RSSI for alert (dBm)
+min_rssi=-70
+
+# Minimum signal duration (ms)
+min_duration=100
+
+# Alert cooldown period (seconds)
+cooldown=2
+
+# Alert on specific patterns
+pattern_matching=false
+
+[Priority Alerts]
+# High priority bands (immediate alert)
+priority_bands=2g4,5g8
+
+# Critical RSSI threshold (dBm)
+critical_rssi=-50
+
+# Continuous monitoring for priority
+priority_continuous=true
+
+[Notification Types]
+# Short beep for weak signals
+weak_signal_beep=true
+
+# Long beep for strong signals
+strong_signal_beep=true
+
+# Alarm for critical signals
+critical_alarm=true
+
+# Voice alerts (if supported)
+voice_alerts=false

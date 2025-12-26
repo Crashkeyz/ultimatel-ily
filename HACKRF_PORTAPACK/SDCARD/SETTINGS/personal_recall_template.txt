@@ -1,0 +1,100 @@
+# Personal Drone Recall Template Configuration
+# WARNING: FOR YOUR OWN DRONES ONLY - Illegal for others' equipment
+
+[General Settings]
+# Protocol type (frsky_d16, flysky, elrs, crossfire, custom)
+protocol=custom
+
+# Center frequency (Hz) - MUST CUSTOMIZE
+center_frequency=2450000000
+
+# Frequency hopping (true/false)
+frequency_hopping=false
+
+# Number of hopping channels
+hop_channels=16
+
+[Transmission Settings]
+# Modulation type (AM, FM, GFSK, FSK, LoRa)
+modulation=GFSK
+
+# Bandwidth (Hz)
+bandwidth=1000000
+
+# Sample rate (Hz)
+sample_rate=2000000
+
+# Transmit gain (0-47 dB) - VERIFY LEGAL LIMITS
+tx_gain=0
+
+# Transmit power (dBm) - VERIFY LEGAL LIMITS
+tx_power=0
+
+[RTH Command]
+# Return to Home command file
+rth_command_file=
+
+# Failsafe trigger file
+failsafe_file=
+
+# Emergency stop file
+emergency_file=
+
+[Safety Settings]
+# Require confirmation before transmit
+require_confirmation=true
+
+# Maximum transmission duration (ms)
+max_tx_duration=1000
+
+# Automatic timeout (seconds)
+auto_timeout=10
+
+# Safe mode (receive only)
+safe_mode=true
+
+[Capture Settings]
+# Capture path for signal recording
+capture_path=/SDCARD/CAPTURES/
+
+# Replay path for stored signals
+replay_path=/SDCARD/REPLAYS/
+
+# Auto-save captures
+auto_save=true
+
+# Capture format
+capture_format=complex16
+
+[Testing Mode]
+# Enable test mode (reduced power)
+test_mode=true
+
+# Test frequency (away from actual drones)
+test_frequency=2400000000
+
+# Maximum test duration (seconds)
+test_duration=5
+
+[Protocol Specific - FrSky D16]
+frsky_d16_hop_table=
+
+[Protocol Specific - FlySky]
+flysky_id=
+
+[Protocol Specific - ELRS]
+elrs_binding_phrase=
+elrs_packet_rate=250
+
+[Protocol Specific - Crossfire]
+crossfire_band=915
+crossfire_power=10
+
+# INSTRUCTIONS:
+# 1. Choose your protocol
+# 2. Capture YOUR drone's signals (see PERSONAL_RECALL_SETUP.md)
+# 3. Configure frequencies and modulation
+# 4. Save captured signals to REPLAYS directory
+# 5. Test in safe environment with test_mode=true
+# 6. Verify legal compliance before actual use
+# 7. NEVER use on drones you don't own

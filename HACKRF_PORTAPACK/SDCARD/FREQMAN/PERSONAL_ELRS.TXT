@@ -1,0 +1,48 @@
+# PortaPack Mayhem FREQMAN File
+# ExpressLRS (ELRS) Protocol Template - FOR YOUR OWN DRONES ONLY
+# WARNING: Transmitting to drones you don't own is ILLEGAL
+#
+# This template requires customization with YOUR drone's specific frequencies
+# Follow the PERSONAL_RECALL_SETUP.md guide to capture your own signals
+#
+# ExpressLRS Specifications:
+# - 2.4 GHz and 900 MHz variants
+# - High-speed digital protocol
+# - Multiple packet rates (50Hz, 150Hz, 250Hz, 500Hz, 1000Hz)
+# - LoRa-based modulation
+# - User must capture their own binding phrase and settings
+
+# 2.4 GHz ELRS TEMPLATE FREQUENCIES (MUST BE CUSTOMIZED)
+f=2400000000,m=AM,bw=2000000,d=ELRS 2.4G Ch1 [TEMPLATE]
+f=2420000000,m=AM,bw=2000000,d=ELRS 2.4G Ch2 [TEMPLATE]
+f=2440000000,m=AM,bw=2000000,d=ELRS 2.4G Ch3 [TEMPLATE]
+f=2460000000,m=AM,bw=2000000,d=ELRS 2.4G Ch4 [TEMPLATE]
+f=2480000000,m=AM,bw=2000000,d=ELRS 2.4G Ch5 [TEMPLATE]
+
+# 900 MHz ELRS TEMPLATE FREQUENCIES (MUST BE CUSTOMIZED)
+f=903000000,m=AM,bw=500000,d=ELRS 900M Ch1 [TEMPLATE]
+f=909000000,m=AM,bw=500000,d=ELRS 900M Ch2 [TEMPLATE]
+f=915000000,m=AM,bw=500000,d=ELRS 900M Ch3 [TEMPLATE]
+f=921000000,m=AM,bw=500000,d=ELRS 900M Ch4 [TEMPLATE]
+f=927000000,m=AM,bw=500000,d=ELRS 900M Ch5 [TEMPLATE]
+
+# INSTRUCTIONS:
+# ExpressLRS uses a unique binding phrase and frequency hopping
+# This makes replay more complex - you need:
+# 1. Your ELRS binding phrase
+# 2. Your configured frequency band (2.4G or 900M)
+# 3. Your packet rate setting
+# 4. Capture of YOUR specific control signals
+# 
+# ELRS is encrypted with a binding phrase, making unauthorized
+# control virtually impossible - this is by design for security
+#
+# For YOUR own drone:
+# 1. Know your binding phrase and settings
+# 2. Use HackRF to capture YOUR control signals
+# 3. Analyze the frequency hopping pattern
+# 4. Update this template with YOUR values
+# 5. Test in a safe, controlled environment
+#
+# See PERSONAL_RECALL_SETUP.md for detailed instructions
+# Note: ELRS replay may require advanced signal processing

@@ -1,0 +1,42 @@
+# PortaPack Mayhem FREQMAN File
+# FlySky AFHDS/AFHDS2A Protocol Template - FOR YOUR OWN DRONES ONLY
+# WARNING: Transmitting to drones you don't own is ILLEGAL
+#
+# This template requires customization with YOUR drone's specific frequencies
+# Follow the PERSONAL_RECALL_SETUP.md guide to capture your own signals
+#
+# FlySky Specifications:
+# - AFHDS: 2.4 GHz, GFSK modulation
+# - AFHDS2A: 2.4 GHz, improved protocol with telemetry
+# - Frequency hopping across 16 channels
+# - User must capture their own frequency and timing
+
+# TEMPLATE FREQUENCIES (MUST BE CUSTOMIZED)
+# Replace these with YOUR drone's actual frequencies after capture
+f=2401000000,m=AM,bw=1000000,d=FlySky Ch1 [TEMPLATE]
+f=2406000000,m=AM,bw=1000000,d=FlySky Ch2 [TEMPLATE]
+f=2411000000,m=AM,bw=1000000,d=FlySky Ch3 [TEMPLATE]
+f=2416000000,m=AM,bw=1000000,d=FlySky Ch4 [TEMPLATE]
+f=2421000000,m=AM,bw=1000000,d=FlySky Ch5 [TEMPLATE]
+f=2426000000,m=AM,bw=1000000,d=FlySky Ch6 [TEMPLATE]
+f=2431000000,m=AM,bw=1000000,d=FlySky Ch7 [TEMPLATE]
+f=2436000000,m=AM,bw=1000000,d=FlySky Ch8 [TEMPLATE]
+f=2441000000,m=AM,bw=1000000,d=FlySky Ch9 [TEMPLATE]
+f=2446000000,m=AM,bw=1000000,d=FlySky Ch10 [TEMPLATE]
+f=2451000000,m=AM,bw=1000000,d=FlySky Ch11 [TEMPLATE]
+f=2456000000,m=AM,bw=1000000,d=FlySky Ch12 [TEMPLATE]
+f=2461000000,m=AM,bw=1000000,d=FlySky Ch13 [TEMPLATE]
+f=2466000000,m=AM,bw=1000000,d=FlySky Ch14 [TEMPLATE]
+f=2471000000,m=AM,bw=1000000,d=FlySky Ch15 [TEMPLATE]
+f=2476000000,m=AM,bw=1000000,d=FlySky Ch16 [TEMPLATE]
+
+# INSTRUCTIONS:
+# 1. Power on YOUR FlySky transmitter and drone
+# 2. Bind transmitter to YOUR drone if not already bound
+# 3. Use HackRF in receive mode to capture control signals
+# 4. Identify your specific frequency hopping pattern
+# 5. Replace the frequencies above with YOUR actual values
+# 6. Capture failsafe and RTH commands from YOUR transmitter
+# 7. Test in a safe, controlled environment
+#
+# See PERSONAL_RECALL_SETUP.md for detailed instructions

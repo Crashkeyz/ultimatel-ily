@@ -1,0 +1,32 @@
+# PortaPack Mayhem FREQMAN File
+# 915 MHz ISM Band - RC Control and Telemetry
+# LEGAL USE: Receive-only monitoring (always legal)
+# Common frequencies for drone control and telemetry systems
+
+f=902000000,m=AM,bw=200000,d=902.0 ISM Lower
+f=903000000,m=AM,bw=200000,d=903.0 Telemetry
+f=904000000,m=AM,bw=200000,d=904.0 Telemetry
+f=905000000,m=AM,bw=200000,d=905.0 Telemetry
+f=906000000,m=AM,bw=200000,d=906.0 RC/Telem
+f=907000000,m=AM,bw=200000,d=907.0 RC/Telem
+f=908000000,m=AM,bw=200000,d=908.0 RC/Telem
+f=909000000,m=AM,bw=200000,d=909.0 RC Ch 1
+f=910000000,m=AM,bw=200000,d=910.0 RC Ch 2
+f=911000000,m=AM,bw=200000,d=911.0 RC Ch 3
+f=912000000,m=AM,bw=200000,d=912.0 RC Ch 4
+f=913000000,m=AM,bw=200000,d=913.0 RC Ch 5
+f=914000000,m=AM,bw=200000,d=914.0 RC Ch 6
+f=915000000,m=AM,bw=200000,d=915.0 ISM Center
+f=916000000,m=AM,bw=200000,d=916.0 RC Ch 7
+f=917000000,m=AM,bw=200000,d=917.0 RC Ch 8
+f=918000000,m=AM,bw=200000,d=918.0 RC Ch 9
+f=919000000,m=AM,bw=200000,d=919.0 RC Ch 10
+f=920000000,m=AM,bw=200000,d=920.0 RC Ch 11
+f=921000000,m=AM,bw=200000,d=921.0 RC Ch 12
+f=922000000,m=AM,bw=200000,d=922.0 RC Ch 13
+f=923000000,m=AM,bw=200000,d=923.0 RC Ch 14
+f=924000000,m=AM,bw=200000,d=924.0 RC Ch 15
+f=925000000,m=AM,bw=200000,d=925.0 RC Ch 16
+f=926000000,m=AM,bw=200000,d=926.0 RC/Telem
+f=927000000,m=AM,bw=200000,d=927.0 RC/Telem
+f=928000000,m=AM,bw=200000,d=928.0 ISM Upper
