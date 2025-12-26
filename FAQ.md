@@ -375,6 +375,253 @@ Currently, there's no official commercial support. The project is community-driv
 - Contributing funding for specific features
 - Providing sponsorship to maintainers
 
+## Advanced Research Features
+
+### What are the advanced research features?
+
+Version 1.1+ includes educational tools for RF security research:
+- **Rolling Code Analyzer**: Study rolling code systems
+- **Signal Intelligence**: Advanced protocol identification
+- **Advanced TX**: Sophisticated transmission testing
+- **RF Research Tools**: Educational demonstrations (disabled by default)
+
+See [ADVANCED_FEATURES.md](ADVANCED_FEATURES.md) for complete documentation.
+
+### Are these features legal to use?
+
+The features themselves are legal, but **HOW you use them matters**:
+
+✅ **Legal uses**:
+- Analyzing your own devices
+- Authorized security research
+- Educational learning
+- Professional penetration testing (with permission)
+
+❌ **Illegal uses**:
+- Accessing systems you don't own
+- RF jamming or interference
+- Bypassing security without permission
+- Violating FCC regulations
+
+**Always read [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) before using advanced features.**
+
+### Can I break rolling codes with this?
+
+**No.** The rolling code analyzer is educational only. It teaches:
+- How rolling codes work
+- Why simple replay doesn't work
+- Protocol structures
+- Cryptographic principles
+
+Modern rolling codes (KeeLoq, HCS) use encryption that cannot be broken with these tools. The analyzer demonstrates WHY they're secure.
+
+See [ROLLING_CODES.md](ROLLING_CODES.md) for detailed explanation.
+
+### Is the RF jamming feature real?
+
+**No.** The RF research tools provide **educational demonstrations only**. The actual harmful functionality is disabled for safety and legal compliance.
+
+These features teach about:
+- RF vulnerabilities (theoretical)
+- Why jamming is dangerous
+- Defensive countermeasures
+- Legal consequences
+
+**Real jamming is a federal crime with severe penalties.**
+
+### How do I enable advanced features?
+
+1. Navigate to main menu
+2. Select "7. Advanced Research"
+3. Read and accept legal warning
+4. Choose desired feature
+
+Some features require activation in `config.h`:
+```cpp
+#define ENABLE_ROLLING_CODE_ANALYSIS 1
+#define ENABLE_SIGNAL_INTELLIGENCE 1
+#define ENABLE_ADVANCED_TX 1
+#define ENABLE_RF_RESEARCH 0  // Disabled by default
+```
+
+### What safety features are included?
+
+Multiple safety mechanisms:
+- **Emergency stop button** (GPIO_NUM_0)
+- **Transmission duration limits** (5 seconds default)
+- **Automatic timeouts** (5 minutes for research mode)
+- **Feature flags** (enable/disable at compile time)
+- **Usage logging** (audit trail)
+- **Legal warnings** (must accept before use)
+
+### Can I use these for penetration testing?
+
+**Only with proper authorization**:
+- Written permission from system owner
+- Clear scope definition
+- Professional contract or engagement letter
+- Compliance with all laws
+- Liability insurance recommended
+
+See [RF_SECURITY.md](RF_SECURITY.md) for responsible research guidelines.
+
+### What if I accidentally do something illegal?
+
+**Immediately**:
+1. Stop the activity
+2. Document what occurred
+3. Consult legal counsel
+4. Consider voluntary disclosure
+5. Don't attempt to cover it up
+
+**Prevention is better**:
+- Read documentation thoroughly
+- Get authorization before testing
+- When in doubt, don't do it
+- Consult legal counsel proactively
+
+### Where can I learn more about RF security?
+
+**Documentation**:
+- [ADVANCED_FEATURES.md](ADVANCED_FEATURES.md) - Feature documentation
+- [ROLLING_CODES.md](ROLLING_CODES.md) - Rolling code explanation
+- [RF_SECURITY.md](RF_SECURITY.md) - Security research guide
+- [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) - Legal warnings
+
+**External Resources**:
+- Academic papers on RF security
+- DEFCON/Black Hat conference talks
+- Security research blogs
+- Professional training courses
+
+### How can I contribute to RF security research?
+
+**Responsibly**:
+- ✅ Learn the fundamentals
+- ✅ Practice on your own devices
+- ✅ Share knowledge ethically
+- ✅ Follow responsible disclosure
+- ✅ Contribute to open source
+- ✅ Help improve security for everyone
+
+**Not this way**:
+- ❌ Attacking others' systems
+- ❌ Publishing weaponized exploits
+- ❌ Enabling script kiddies
+- ❌ Seeking fame through harm
+- ❌ Violating ethical standards
+
+### What's the difference between gray hat and black hat?
+
+**White Hat** (Ethical):
+- Authorized testing only
+- Responsible disclosure
+- Follows laws and ethics
+- Improves security
+
+**Gray Hat** (Questionable):
+- Unauthorized testing "for good"
+- Public disclosure without coordination
+- Legal gray areas
+- Mixed motivations
+
+**Black Hat** (Criminal):
+- Malicious intent
+- Unauthorized access
+- Criminal activity
+- Causes harm
+
+**Always be white hat. It's the only legally and ethically defensible position.**
+
+### Can I use this for my security research thesis?
+
+Yes, with caveats:
+- Get IRB/ethics committee approval
+- Use only authorized test equipment
+- Follow academic integrity standards
+- Coordinate with advisor
+- Document methodology carefully
+- Consider responsible disclosure implications
+
+The firmware can be excellent for educational research on:
+- Protocol analysis
+- RF security mechanisms
+- Cryptographic implementations
+- Security system design
+
+### What should I do if I discover a vulnerability?
+
+**Follow responsible disclosure**:
+
+1. **Don't exploit it** beyond proof-of-concept
+2. **Document thoroughly** (methodology, impact)
+3. **Contact vendor** through security contact
+4. **Give time to fix** (typically 90 days)
+5. **Coordinate disclosure** date
+6. **Publish responsibly** with remediation guidance
+
+See detailed process in [RF_SECURITY.md](RF_SECURITY.md).
+
+## Responsible Disclosure
+
+### How do I report a vulnerability I found?
+
+1. **Gather information**:
+   - Affected product/version
+   - Vulnerability details
+   - Proof of concept (if safe)
+   - Impact assessment
+
+2. **Contact vendor**:
+   - Use security@ email or security portal
+   - Request secure communication
+   - Provide summary (not full details initially)
+   - Propose disclosure timeline
+
+3. **Work together**:
+   - Provide additional info as needed
+   - Test proposed fixes
+   - Coordinate public disclosure
+   - Credit appropriately
+
+4. **Public disclosure**:
+   - After fix is available
+   - Or after reasonable timeline (90+ days)
+   - Include remediation guidance
+   - Be professional and factual
+
+### What if a vendor doesn't respond?
+
+**Try escalation**:
+- Alternative contacts (security team, executives)
+- CERT/CC or national CERT
+- Industry organizations
+- Public notification (last resort)
+
+**Timeline**:
+- 7 days: Initial response expected
+- 30 days: Acknowledgment and plan
+- 90 days: Fix or disclosure
+- 120 days: Extended timeline for complex fixes
+
+### Should I disclose publicly even without a fix?
+
+**Consider carefully**:
+
+**Yes if**:
+- Active exploitation occurring
+- Critical infrastructure at risk
+- Vendor unresponsive after reasonable time
+- Public interest outweighs risks
+
+**No if**:
+- Vendor working on fix in good faith
+- More time likely to result in solution
+- Disclosure would cause disproportionate harm
+- Legal restrictions apply
+
+**When in doubt, consult CERT/CC or similar coordination center.**
+
 ## Still Have Questions?
 
 If your question isn't answered here:
