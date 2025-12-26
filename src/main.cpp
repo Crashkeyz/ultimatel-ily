@@ -42,6 +42,9 @@ AdvancedTx* advancedTx = nullptr;
 RFResearch* rfResearch = nullptr;
 #endif
 
+// Captured signal (global for reuse across functions)
+RFSignal capturedSignal;
+
 // Menu state
 int currentMenuItem = 0;
 int maxMenuItems = 7;  // Increased for Advanced Research menu

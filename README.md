@@ -2,8 +2,23 @@
 
 A fully functional multi-protocol RF firmware for the LilyGO T-Embed CC1101 device. This firmware turns your T-Embed into a powerful "skeleton key" tool for analyzing, capturing, and replaying RF signals across multiple frequencies.
 
+## ⚠️ NEW: Advanced RF Security Research Features
+
+**Version 1.1+** includes advanced educational tools for RF security research:
+
+- **Rolling Code Analyzer**: Study and understand rolling code security systems
+- **Signal Intelligence**: Advanced protocol identification and signal analysis  
+- **Advanced Transmission**: Sophisticated transmission patterns for testing
+- **RF Research Tools**: Educational demonstrations (disabled by default)
+
+**📚 Complete Documentation**: See [ADVANCED_FEATURES.md](ADVANCED_FEATURES.md)
+**⚖️ Legal Notice**: Read [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) before using advanced features
+
+These features are for **EDUCATIONAL AND AUTHORIZED RESEARCH ONLY**. Misuse is illegal and can result in severe penalties.
+
 ## Features
 
+### Basic Features
 - **Multi-Frequency Support**: 315MHz, 433.92MHz, 868MHz, 915MHz
 - **Signal Capture**: Capture RF signals with timing analysis
 - **Signal Replay**: Transmit captured signals
@@ -11,6 +26,21 @@ A fully functional multi-protocol RF firmware for the LilyGO T-Embed CC1101 devi
 - **Signal Storage**: Save and load captured signals to/from SPIFFS
 - **TFT Display Interface**: Easy-to-use menu system
 - **Multiple Modulation Types**: ASK/OOK, 2FSK, 4FSK, MSK, GFSK
+
+### Advanced Research Features (v1.1+)
+
+**⚠️ EDUCATIONAL AND AUTHORIZED USE ONLY ⚠️**
+
+- **Rolling Code Analysis**: Study rolling code security systems (KeeLoq, HCS)
+- **Signal Intelligence**: Advanced protocol identification and analysis
+- **Advanced Transmission**: Sophisticated transmission testing capabilities
+- **RF Research Tools**: Educational demonstrations of RF vulnerabilities
+
+**Documentation**:
+- [ADVANCED_FEATURES.md](ADVANCED_FEATURES.md) - Complete feature documentation
+- [ROLLING_CODES.md](ROLLING_CODES.md) - Educational guide to rolling codes
+- [RF_SECURITY.md](RF_SECURITY.md) - RF security research best practices
+- [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) - Important legal information
 
 ## Hardware
 
@@ -87,6 +117,7 @@ Navigate using the UP/DOWN buttons and select with the SELECT button:
 4. **Saved Signals** - Browse and manage saved signals
 5. **Settings** - Configure device settings
 6. **Info** - View firmware information
+7. **🔬 Advanced Research** ⚠️ - Advanced RF security research features (Educational use only)
 
 ### Capturing Signals
 
@@ -151,11 +182,46 @@ ultimatel-ily/
 
 ⚠️ **IMPORTANT**: This tool is for educational and research purposes only.
 
-- Always operate within legal frequency bands for your region
-- Obtain proper authorization before analyzing or transmitting RF signals
-- Do not use this device to intercept, interfere with, or disrupt wireless communications
-- Be aware of local laws and regulations regarding RF devices
-- The authors are not responsible for any misuse of this software
+### Legal Uses
+✅ Analyzing and testing **your own devices**
+✅ Educational learning about RF systems
+✅ Authorized security research with permission
+✅ Professional penetration testing under contract
+
+### Illegal Uses
+❌ Accessing systems you don't own or control
+❌ RF jamming or interference (FEDERAL CRIME)
+❌ Bypassing security without authorization
+❌ Intercepting private communications
+
+### Regulations
+- **Always operate within legal frequency bands** for your region
+- **Obtain proper authorization** before analyzing or transmitting RF signals
+- **Do not interfere** with wireless communications
+- **FCC Part 15 regulations** apply in USA (penalties up to $112,500/day)
+- **Be aware of local laws** and regulations regarding RF devices
+
+### Advanced Features Warning
+
+Version 1.1+ includes advanced RF security research features. **Read [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) before using them.**
+
+These features are for EDUCATIONAL purposes only. Misuse can result in:
+- Criminal prosecution
+- Heavy fines
+- Equipment seizure
+- Imprisonment
+
+**You assume ALL legal responsibility for your actions.**
+
+## Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY. The developers:
+- Accept NO liability for misuse
+- Do NOT endorse illegal activities  
+- Provide tools for EDUCATIONAL purposes only
+- WILL cooperate with law enforcement
+
+**Use responsibly. Use legally. Use ethically.**
 
 ## Contributing
 

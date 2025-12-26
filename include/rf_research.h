@@ -66,6 +66,9 @@ public:
     bool checkEmergencyStop();
     uint32_t getRemainingTime() const;
     
+    // Authorization check (public for UI access)
+    void checkAuthorization();
+    
     // Legal warnings
     static String getLegalWarning();
     static String getDetailedWarning();
@@ -80,7 +83,6 @@ private:
     
     // Safety checks
     bool performSafetyCheck();
-    void checkAuthorization();
     void logUsage(const String& feature);
 };
 
