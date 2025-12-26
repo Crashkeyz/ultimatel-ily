@@ -48,4 +48,21 @@
 #define FIRMWARE_VERSION "1.0.0"
 #define FIRMWARE_NAME "Ultimatel-ily"
 
+// Advanced Research Feature Flags
+// These features are for educational and authorized security research only
+#define ENABLE_ROLLING_CODE_ANALYSIS 1
+#define ENABLE_SIGNAL_INTELLIGENCE 1
+#define ENABLE_ADVANCED_TX 1
+#define ENABLE_RF_RESEARCH 0  // Disabled by default, requires explicit user activation
+
+// Safety limits
+#define MAX_TX_DURATION_MS 5000
+#define EMERGENCY_STOP_BUTTON GPIO_NUM_0
+#define MAX_SWEEP_DURATION_MS 10000
+#define MIN_PULSE_INTERVAL_MS 100
+
+// Research mode settings
+#define RESEARCH_MODE_TIMEOUT_MS 300000  // 5 minutes
+#define REQUIRE_DISCLAIMER_ACCEPTANCE 1
+
 #endif // CONFIG_H

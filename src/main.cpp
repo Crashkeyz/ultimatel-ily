@@ -5,14 +5,49 @@
 #include "storage.h"
 #include "rf_signal.h"
 
+#if ENABLE_ROLLING_CODE_ANALYSIS
+#include "rolling_code_analyzer.h"
+#endif
+
+#if ENABLE_SIGNAL_INTELLIGENCE
+#include "signal_intelligence.h"
+#endif
+
+#if ENABLE_ADVANCED_TX
+#include "advanced_tx.h"
+#endif
+
+#if ENABLE_RF_RESEARCH
+#include "rf_research.h"
+#endif
+
 // Global objects
 RFModule rfModule;
 Display display;
 Storage storage;
 
+#if ENABLE_ROLLING_CODE_ANALYSIS
+RollingCodeAnalyzer rollingCodeAnalyzer;
+#endif
+
+#if ENABLE_SIGNAL_INTELLIGENCE
+SignalIntelligence signalIntel;
+#endif
+
+#if ENABLE_ADVANCED_TX
+AdvancedTx* advancedTx = nullptr;
+#endif
+
+#if ENABLE_RF_RESEARCH
+RFResearch* rfResearch = nullptr;
+#endif
+
+// Captured signal (global for reuse across functions)
+RFSignal capturedSignal;
+
 // Menu state
 int currentMenuItem = 0;
-int maxMenuItems = 6;
+int maxMenuItems = 7;  // Increased for Advanced Research menu
 MenuState currentMenu = MENU_MAIN;
 
 // Button states
@@ -25,6 +60,13 @@ std::vector<String> savedSignals;
 int selectedSignal = 0;
 bool signalsListLoaded = false;
 
+// Advanced research state
+int advancedMenuItem = 0;
+int rollingCodeMenuItem = 0;
+int signalIntelMenuItem = 0;
+int rfResearchMenuItem = 0;
+bool legalDisclaimerAccepted = false;
+
 // Function prototypes
 void handleMainMenu();
 void handleCaptureMode();
@@ -33,6 +75,11 @@ void handleScanMode();
 void handleSavedSignalsMenu();
 void handleSettingsMenu();
 void handleInfoScreen();
+void handleAdvancedResearchMenu();
+void handleRollingCodeMenu();
+void handleSignalIntelMenu();
+void handleRFResearchMenu();
+void handleLegalWarning();
 void checkButtons();
 void navigateMenu(int direction);
 
@@ -73,6 +120,17 @@ void setup() {
     // Note: Saved signals list will be loaded on demand when accessing saved signals menu
     Serial.println("Storage ready - signals list will load on demand");
     
+    // Initialize advanced features
+#if ENABLE_ADVANCED_TX
+    advancedTx = new AdvancedTx(&rfModule);
+    Serial.println("Advanced TX initialized");
+#endif
+
+#if ENABLE_RF_RESEARCH
+    rfResearch = new RFResearch(&rfModule);
+    Serial.println("RF Research module loaded (disabled by default)");
+#endif
+    
     // Configure button pins (using internal pull-ups)
     // Note: Actual button pins may vary - these are placeholders
     pinMode(BUTTON_UP, INPUT_PULLUP);
@@ -110,6 +168,21 @@ void loop() {
             break;
         case MENU_INFO:
             handleInfoScreen();
+            break;
+        case MENU_ADVANCED_RESEARCH:
+            handleAdvancedResearchMenu();
+            break;
+        case MENU_ROLLING_CODE:
+            handleRollingCodeMenu();
+            break;
+        case MENU_SIGNAL_INTEL:
+            handleSignalIntelMenu();
+            break;
+        case MENU_RF_RESEARCH:
+            handleRFResearchMenu();
+            break;
+        case MENU_LEGAL_WARNING:
+            handleLegalWarning();
             break;
     }
     
@@ -222,6 +295,12 @@ void handleMainMenu() {
             case 5:  // Info
                 currentMenu = MENU_INFO;
                 display.showInfo();
+                break;
+                
+            case 6:  // Advanced Research
+                currentMenu = MENU_ADVANCED_RESEARCH;
+                advancedMenuItem = 0;
+                display.showAdvancedResearchMenu(advancedMenuItem);
                 break;
         }
     }
@@ -358,5 +437,337 @@ void handleInfoScreen() {
         buttonSelectPressed = false;
         currentMenu = MENU_MAIN;
         display.showMainMenu(currentMenuItem);
+    }
+}
+
+void handleAdvancedResearchMenu() {
+    // Check for navigation
+    static bool upPressed = false;
+    static bool downPressed = false;
+    
+    if (digitalRead(BUTTON_UP) == LOW && !upPressed) {
+        upPressed = true;
+        advancedMenuItem--;
+        if (advancedMenuItem < 0) advancedMenuItem = 3;
+        display.showAdvancedResearchMenu(advancedMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_UP) == HIGH) {
+        upPressed = false;
+    }
+    
+    if (digitalRead(BUTTON_DOWN) == LOW && !downPressed) {
+        downPressed = true;
+        advancedMenuItem++;
+        if (advancedMenuItem > 3) advancedMenuItem = 0;
+        display.showAdvancedResearchMenu(advancedMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_DOWN) == HIGH) {
+        downPressed = false;
+    }
+    
+    if (buttonSelectPressed) {
+        buttonSelectPressed = false;
+        
+        switch (advancedMenuItem) {
+            case 0:  // Legal Warning
+                currentMenu = MENU_LEGAL_WARNING;
+                display.showLegalWarning("");
+                break;
+                
+            case 1:  // Rolling Code Analysis
+#if ENABLE_ROLLING_CODE_ANALYSIS
+                currentMenu = MENU_ROLLING_CODE;
+                rollingCodeMenuItem = 0;
+                display.showRollingCodeMenu(rollingCodeMenuItem);
+#else
+                display.showStatus("Feature disabled");
+                delay(1000);
+                display.showAdvancedResearchMenu(advancedMenuItem);
+#endif
+                break;
+                
+            case 2:  // Signal Intelligence
+#if ENABLE_SIGNAL_INTELLIGENCE
+                currentMenu = MENU_SIGNAL_INTEL;
+                signalIntelMenuItem = 0;
+                display.showSignalIntelMenu(signalIntelMenuItem);
+#else
+                display.showStatus("Feature disabled");
+                delay(1000);
+                display.showAdvancedResearchMenu(advancedMenuItem);
+#endif
+                break;
+                
+            case 3:  // RF Research Tools
+#if ENABLE_RF_RESEARCH
+                currentMenu = MENU_RF_RESEARCH;
+                rfResearchMenuItem = 0;
+                display.showRFResearchMenu(rfResearchMenuItem);
+#else
+                display.showStatus("Feature disabled in config");
+                delay(2000);
+                display.showAdvancedResearchMenu(advancedMenuItem);
+#endif
+                break;
+        }
+    }
+}
+
+void handleRollingCodeMenu() {
+#if ENABLE_ROLLING_CODE_ANALYSIS
+    // Navigation
+    static bool upPressed = false;
+    static bool downPressed = false;
+    
+    if (digitalRead(BUTTON_UP) == LOW && !upPressed) {
+        upPressed = true;
+        rollingCodeMenuItem--;
+        if (rollingCodeMenuItem < 0) rollingCodeMenuItem = 4;
+        display.showRollingCodeMenu(rollingCodeMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_UP) == HIGH) {
+        upPressed = false;
+    }
+    
+    if (digitalRead(BUTTON_DOWN) == LOW && !downPressed) {
+        downPressed = true;
+        rollingCodeMenuItem++;
+        if (rollingCodeMenuItem > 4) rollingCodeMenuItem = 0;
+        display.showRollingCodeMenu(rollingCodeMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_DOWN) == HIGH) {
+        downPressed = false;
+    }
+    
+    if (buttonSelectPressed) {
+        buttonSelectPressed = false;
+        
+        switch (rollingCodeMenuItem) {
+            case 0:  // Capture Sequence
+                display.showStatus("Capturing sequence...");
+                rfModule.startReceive();
+                delay(3000);
+                if (rfModule.signalDetected()) {
+                    capturedSignal = rfModule.captureSignal();
+                    rollingCodeAnalyzer.captureSequence(capturedSignal);
+                    display.showStatus("Sequence captured!");
+                } else {
+                    display.showStatus("No signal detected");
+                }
+                rfModule.stopReceive();
+                delay(1000);
+                display.showRollingCodeMenu(rollingCodeMenuItem);
+                break;
+                
+            case 1:  // Analyze Pattern
+                {
+                    RollingCodeAnalysis analysis = rollingCodeAnalyzer.analyzePattern();
+                    display.showAnalysisResult(analysis.analysisReport);
+                    delay(3000);
+                    display.showRollingCodeMenu(rollingCodeMenuItem);
+                }
+                break;
+                
+            case 2:  // Protocol Detection
+                display.showStatus("Detecting protocol...");
+                delay(1000);
+                display.showStatus("See serial output");
+                delay(1000);
+                display.showRollingCodeMenu(rollingCodeMenuItem);
+                break;
+                
+            case 3:  // Export Data
+                {
+                    String report = rollingCodeAnalyzer.exportAnalysis();
+                    Serial.println(report);
+                    display.showStatus("Exported to serial");
+                    delay(1000);
+                    display.showRollingCodeMenu(rollingCodeMenuItem);
+                }
+                break;
+                
+            case 4:  // Clear Sequences
+                rollingCodeAnalyzer.clearSequences();
+                display.showStatus("Sequences cleared");
+                delay(1000);
+                display.showRollingCodeMenu(rollingCodeMenuItem);
+                break;
+        }
+    }
+#endif
+}
+
+void handleSignalIntelMenu() {
+#if ENABLE_SIGNAL_INTELLIGENCE
+    // Navigation
+    static bool upPressed = false;
+    static bool downPressed = false;
+    
+    if (digitalRead(BUTTON_UP) == LOW && !upPressed) {
+        upPressed = true;
+        signalIntelMenuItem--;
+        if (signalIntelMenuItem < 0) signalIntelMenuItem = 4;
+        display.showSignalIntelMenu(signalIntelMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_UP) == HIGH) {
+        upPressed = false;
+    }
+    
+    if (digitalRead(BUTTON_DOWN) == LOW && !downPressed) {
+        downPressed = true;
+        signalIntelMenuItem++;
+        if (signalIntelMenuItem > 4) signalIntelMenuItem = 0;
+        display.showSignalIntelMenu(signalIntelMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_DOWN) == HIGH) {
+        downPressed = false;
+    }
+    
+    if (buttonSelectPressed) {
+        buttonSelectPressed = false;
+        
+        switch (signalIntelMenuItem) {
+            case 0:  // Auto-Identify Protocol
+                display.showStatus("Capturing signal...");
+                rfModule.startReceive();
+                delay(3000);
+                if (rfModule.signalDetected()) {
+                    capturedSignal = rfModule.captureSignal();
+                    ProtocolInfo info = signalIntel.autoIdentifyProtocol(capturedSignal);
+                    String result = "Protocol: " + info.protocolName + "\n";
+                    result += "Confidence: " + String(info.confidence * 100) + "%";
+                    display.showAnalysisResult(result);
+                    delay(3000);
+                } else {
+                    display.showStatus("No signal detected");
+                    delay(1000);
+                }
+                rfModule.stopReceive();
+                display.showSignalIntelMenu(signalIntelMenuItem);
+                break;
+                
+            case 1:  // Decode Signal
+                display.showStatus("See serial output");
+                delay(1000);
+                display.showSignalIntelMenu(signalIntelMenuItem);
+                break;
+                
+            case 2:  // Quality Analysis
+                if (capturedSignal.timings.size() > 0) {
+                    SignalQuality quality = signalIntel.analyzeQuality(capturedSignal);
+                    display.showAnalysisResult(quality.qualityReport);
+                    delay(3000);
+                } else {
+                    display.showStatus("Capture signal first");
+                    delay(1000);
+                }
+                display.showSignalIntelMenu(signalIntelMenuItem);
+                break;
+                
+            case 3:  // Extract Bits
+                display.showStatus("See serial output");
+                delay(1000);
+                display.showSignalIntelMenu(signalIntelMenuItem);
+                break;
+                
+            case 4:  // Export Analysis
+                display.showStatus("Exported to serial");
+                delay(1000);
+                display.showSignalIntelMenu(signalIntelMenuItem);
+                break;
+        }
+    }
+#endif
+}
+
+void handleRFResearchMenu() {
+#if ENABLE_RF_RESEARCH
+    // Navigation
+    static bool upPressed = false;
+    static bool downPressed = false;
+    
+    if (digitalRead(BUTTON_UP) == LOW && !upPressed) {
+        upPressed = true;
+        rfResearchMenuItem--;
+        if (rfResearchMenuItem < 0) rfResearchMenuItem = 3;
+        display.showRFResearchMenu(rfResearchMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_UP) == HIGH) {
+        upPressed = false;
+    }
+    
+    if (digitalRead(BUTTON_DOWN) == LOW && !downPressed) {
+        downPressed = true;
+        rfResearchMenuItem++;
+        if (rfResearchMenuItem > 3) rfResearchMenuItem = 0;
+        display.showRFResearchMenu(rfResearchMenuItem);
+        delay(200);
+    } else if (digitalRead(BUTTON_DOWN) == HIGH) {
+        downPressed = false;
+    }
+    
+    if (buttonSelectPressed) {
+        buttonSelectPressed = false;
+        
+        if (rfResearch == nullptr) {
+            display.showStatus("RF Research not available");
+            delay(1000);
+            currentMenu = MENU_ADVANCED_RESEARCH;
+            display.showAdvancedResearchMenu(advancedMenuItem);
+            return;
+        }
+        
+        switch (rfResearchMenuItem) {
+            case 0:  // Authorization Check
+                display.showStatus("Check serial output");
+                rfResearch->checkAuthorization();
+                delay(2000);
+                display.showRFResearchMenu(rfResearchMenuItem);
+                break;
+                
+            case 1:  // Frequency Sweep (educational demo)
+                display.showStatus("EDUCATIONAL DEMO");
+                Serial.println(RFResearch::getLegalWarning());
+                rfResearch->sweepJammer(433.0, 434.0);
+                delay(2000);
+                display.showRFResearchMenu(rfResearchMenuItem);
+                break;
+                
+            case 2:  // Signal Injection
+                display.showStatus("EDUCATIONAL DEMO");
+                delay(1000);
+                display.showRFResearchMenu(rfResearchMenuItem);
+                break;
+                
+            case 3:  // Protocol Fuzzing
+                display.showStatus("EDUCATIONAL DEMO");
+                delay(1000);
+                display.showRFResearchMenu(rfResearchMenuItem);
+                break;
+        }
+    }
+#endif
+}
+
+void handleLegalWarning() {
+    if (buttonSelectPressed) {
+        buttonSelectPressed = false;
+        
+        // User accepted legal warning
+        legalDisclaimerAccepted = true;
+        
+#if ENABLE_RF_RESEARCH
+        if (rfResearch != nullptr) {
+            rfResearch->acceptLegalDisclaimer();
+        }
+#endif
+        
+        Serial.println("Legal disclaimer accepted by user");
+        display.showStatus("Disclaimer accepted");
+        delay(1000);
+        
+        // Return to advanced menu
+        currentMenu = MENU_ADVANCED_RESEARCH;
+        display.showAdvancedResearchMenu(advancedMenuItem);
     }
 }

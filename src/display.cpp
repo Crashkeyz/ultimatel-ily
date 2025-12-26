@@ -53,13 +53,22 @@ void Display::showMainMenu(int selectedItem) {
         "3. Frequency Scan",
         "4. Saved Signals",
         "5. Settings",
-        "6. Info"
+        "6. Info",
+        "7. Advanced Research"
     };
     
     int yPos = 40;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
         drawMenuItem(yPos, menuItems[i], i == selectedItem);
-        yPos += 35;
+        yPos += 32;  // Adjusted spacing for 7 items
+    }
+    
+    // Warning indicator for Advanced Research
+    if (selectedItem == 6) {
+        tft.setTextColor(TFT_RED);
+        tft.setTextSize(1);
+        tft.setTextDatum(MC_DATUM);
+        tft.drawString("EDUCATIONAL USE ONLY", SCREEN_WIDTH / 2, SCREEN_HEIGHT - 35);
     }
     
     currentState = MENU_MAIN;
@@ -207,3 +216,186 @@ void Display::setBacklight(uint8_t brightness) {
     backlightLevel = brightness;
     analogWrite(TFT_BL_PIN, brightness);
 }
+
+void Display::showAdvancedResearchMenu(int selectedItem) {
+    clear();
+    drawHeader("Advanced Research");
+    
+    // Warning indicator
+    tft.fillRect(0, 30, SCREEN_WIDTH, 20, TFT_RED);
+    tft.setTextColor(TFT_WHITE);
+    tft.setTextSize(1);
+    tft.setTextDatum(MC_DATUM);
+    tft.drawString("EDUCATIONAL USE ONLY", SCREEN_WIDTH / 2, 40);
+    
+    const char* menuItems[] = {
+        "Legal Warning",
+        "Rolling Code Analysis",
+        "Signal Intelligence",
+        "RF Research Tools"
+    };
+    
+    int yPos = 60;
+    for (int i = 0; i < 4; i++) {
+        drawMenuItem(yPos, menuItems[i], i == selectedItem);
+        yPos += 35;
+    }
+    
+    currentState = MENU_ADVANCED_RESEARCH;
+}
+
+void Display::showRollingCodeMenu(int selectedItem) {
+    clear();
+    drawHeader("Rolling Code");
+    
+    const char* menuItems[] = {
+        "Capture Sequence",
+        "Analyze Pattern",
+        "Protocol Detection",
+        "Export Data",
+        "Clear Sequences"
+    };
+    
+    int yPos = 40;
+    for (int i = 0; i < 5; i++) {
+        drawMenuItem(yPos, menuItems[i], i == selectedItem);
+        yPos += 35;
+    }
+    
+    currentState = MENU_ROLLING_CODE;
+}
+
+void Display::showSignalIntelMenu(int selectedItem) {
+    clear();
+    drawHeader("Signal Intel");
+    
+    const char* menuItems[] = {
+        "Auto-Identify Protocol",
+        "Decode Signal",
+        "Quality Analysis",
+        "Extract Bits",
+        "Export Analysis"
+    };
+    
+    int yPos = 40;
+    for (int i = 0; i < 5; i++) {
+        drawMenuItem(yPos, menuItems[i], i == selectedItem);
+        yPos += 35;
+    }
+    
+    currentState = MENU_SIGNAL_INTEL;
+}
+
+void Display::showRFResearchMenu(int selectedItem) {
+    clear();
+    
+    // EXTREME WARNING HEADER
+    tft.fillRect(0, 0, SCREEN_WIDTH, 40, TFT_RED);
+    tft.setTextColor(TFT_WHITE);
+    tft.setTextSize(2);
+    tft.setTextDatum(MC_DATUM);
+    tft.drawString("WARNING!", SCREEN_WIDTH / 2, 10);
+    tft.setTextSize(1);
+    tft.drawString("ILLEGAL WITHOUT AUTH", SCREEN_WIDTH / 2, 30);
+    
+    const char* menuItems[] = {
+        "Authorization Check",
+        "Frequency Sweep",
+        "Signal Injection",
+        "Protocol Fuzzing"
+    };
+    
+    int yPos = 50;
+    for (int i = 0; i < 4; i++) {
+        // Draw with red background for danger
+        if (selectedItem == i) {
+            tft.fillRect(0, yPos, SCREEN_WIDTH, 30, TFT_ORANGE);
+            tft.setTextColor(TFT_BLACK);
+        } else {
+            tft.setTextColor(TFT_RED);
+        }
+        tft.setTextSize(2);
+        tft.setTextDatum(ML_DATUM);
+        tft.drawString(menuItems[i], 10, yPos + 15);
+        yPos += 35;
+    }
+    
+    currentState = MENU_RF_RESEARCH;
+}
+
+void Display::showLegalWarning(const String& warningText) {
+    clear();
+    
+    // Red warning header
+    tft.fillRect(0, 0, SCREEN_WIDTH, 30, TFT_RED);
+    tft.setTextColor(TFT_WHITE);
+    tft.setTextSize(2);
+    tft.setTextDatum(MC_DATUM);
+    tft.drawString("LEGAL WARNING", SCREEN_WIDTH / 2, 15);
+    
+    // Warning text
+    tft.setTextColor(TFT_YELLOW);
+    tft.setTextSize(1);
+    tft.setTextDatum(TL_DATUM);
+    
+    // Word wrap the warning text
+    int yPos = 40;
+    int lineHeight = 12;
+    int maxWidth = SCREEN_WIDTH - 20;
+    
+    // Display first few lines (screen space limited)
+    String lines[] = {
+        "EDUCATIONAL USE ONLY",
+        "",
+        "RF research features",
+        "are for authorized",
+        "security research",
+        "and education only.",
+        "",
+        "Unauthorized use is",
+        "ILLEGAL and may result",
+        "in fines and",
+        "imprisonment.",
+        "",
+        "Press SELECT to",
+        "accept responsibility."
+    };
+    
+    for (int i = 0; i < 14 && yPos < SCREEN_HEIGHT - 40; i++) {
+        tft.drawString(lines[i], 10, yPos);
+        yPos += lineHeight;
+    }
+    
+    currentState = MENU_LEGAL_WARNING;
+}
+
+void Display::showAnalysisResult(const String& result) {
+    clear();
+    drawHeader("Analysis Result");
+    
+    tft.setTextColor(TEXT_COLOR);
+    tft.setTextSize(1);
+    tft.setTextDatum(TL_DATUM);
+    
+    // Display result text (simplified - real implementation would scroll)
+    int yPos = 40;
+    int lineHeight = 12;
+    
+    // Split result into lines and display
+    int startIdx = 0;
+    for (int i = 0; i < result.length() && yPos < SCREEN_HEIGHT - 40; i++) {
+        if (result.charAt(i) == '\n' || (i - startIdx) > 25) {
+            String line = result.substring(startIdx, i);
+            tft.drawString(line, 10, yPos);
+            yPos += lineHeight;
+            startIdx = i + 1;
+        }
+    }
+    
+    // Draw last line
+    if (startIdx < result.length() && yPos < SCREEN_HEIGHT - 40) {
+        String line = result.substring(startIdx);
+        tft.drawString(line, 10, yPos);
+    }
+}
+

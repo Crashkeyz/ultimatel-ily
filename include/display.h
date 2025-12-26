@@ -12,7 +12,12 @@ enum MenuState {
     MENU_SCAN,
     MENU_SAVED_SIGNALS,
     MENU_SETTINGS,
-    MENU_INFO
+    MENU_INFO,
+    MENU_ADVANCED_RESEARCH,
+    MENU_ROLLING_CODE,
+    MENU_SIGNAL_INTEL,
+    MENU_RF_RESEARCH,
+    MENU_LEGAL_WARNING
 };
 
 class Display {
@@ -30,6 +35,14 @@ public:
     void showStatus(const String& message);
     void showSignalDetails(const RFSignal& signal);
     void setBacklight(uint8_t brightness);
+    
+    // Advanced research screens
+    void showAdvancedResearchMenu(int selectedItem);
+    void showRollingCodeMenu(int selectedItem);
+    void showSignalIntelMenu(int selectedItem);
+    void showRFResearchMenu(int selectedItem);
+    void showLegalWarning(const String& warningText);
+    void showAnalysisResult(const String& result);
     
 private:
     TFT_eSPI tft;
