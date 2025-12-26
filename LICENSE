@@ -1,0 +1,63 @@
+MIT License
+
+Copyright (c) 2024 Ultimatel-ily Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+LEGAL DISCLAIMER AND RESPONSIBLE USE NOTICE
+
+This software is designed for educational, research, and authorized security
+testing purposes only. Users must comply with all applicable local, state,
+national, and international laws and regulations.
+
+By using this software, you agree to:
+
+1. Only analyze, capture, or transmit radio frequency signals that you are
+   legally authorized to interact with.
+
+2. Comply with all applicable radio frequency regulations in your jurisdiction,
+   including but not limited to:
+   - FCC regulations (United States)
+   - CE marking requirements (European Union)
+   - Other regional and national telecommunications regulations
+
+3. Not use this software to:
+   - Intercept communications without authorization
+   - Gain unauthorized access to any system, property, or service
+   - Interfere with emergency services, aviation, or critical infrastructure
+   - Violate any individual's or organization's privacy rights
+
+4. Understand that the transmission of radio frequency signals may require
+   appropriate licensing in your jurisdiction.
+
+5. Take full responsibility for your use of this software and any consequences
+   that may arise from such use.
+
+THE AUTHORS AND CONTRIBUTORS OF THIS SOFTWARE ASSUME NO LIABILITY FOR ANY
+MISUSE, ILLEGAL USE, OR DAMAGES RESULTING FROM THE USE OF THIS SOFTWARE.
+
+This software is a tool. Like any tool, it can be used responsibly or
+irresponsibly. The choice—and the legal and ethical responsibility—lies
+entirely with the user.
+
+If you are uncertain about the legality of any particular use of this
+software in your jurisdiction, consult with a qualified legal professional
+before proceeding.
