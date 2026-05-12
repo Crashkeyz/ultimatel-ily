@@ -1,0 +1,72 @@
+# HackRF PortaPack Drone Detection Configuration
+# Configure these settings for optimal drone detection
+
+[Scanner Settings]
+# Scan speed (ms per frequency)
+scan_delay=50
+
+# RSSI threshold for detection alert (dBm)
+rssi_threshold=-70
+
+# Audio alert on detection (true/false)
+audio_alert=true
+
+# Visual alert on detection (true/false)
+visual_alert=true
+
+# Log detected activity (true/false)
+log_activity=true
+
+[Frequency Bands]
+# Enable/disable specific bands
+enable_433mhz=true
+enable_915mhz=true
+enable_1g2=true
+enable_2g4=true
+enable_5g8=true
+enable_gps=true
+
+[Detection Sensitivity]
+# Gain settings (0-47 dB for HackRF)
+if_gain=40
+baseband_gain=32
+rf_gain=14
+
+# Sample rate (Hz)
+sample_rate=2000000
+
+# FFT size for spectrum analysis
+fft_size=256
+
+[Display Settings]
+# Update rate for RSSI display (Hz)
+display_update_rate=10
+
+# Show waterfall display
+show_waterfall=true
+
+# Waterfall speed
+waterfall_speed=medium
+
+[Battery Saving]
+# Enable battery saver mode
+battery_saver=false
+
+# Reduce scan when no activity (minutes)
+idle_timeout=5
+
+# Power off screen when idle
+screen_timeout=true
+
+[Logging]
+# Log file path
+log_path=/SDCARD/CAPTURES/
+
+# Log format (csv, txt, json)
+log_format=csv
+
+# Include timestamp
+timestamp=true
+
+# Include GPS coordinates if available
+gps_logging=false

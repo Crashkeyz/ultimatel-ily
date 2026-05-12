@@ -1,0 +1,42 @@
+# PortaPack Mayhem FREQMAN File
+# FrSky D16 Protocol Template - FOR YOUR OWN DRONES ONLY
+# WARNING: Transmitting to drones you don't own is ILLEGAL
+# 
+# This template requires customization with YOUR drone's specific frequencies
+# Follow the PERSONAL_RECALL_SETUP.md guide to capture your own signals
+#
+# FrSky D16 Specifications:
+# - Frequency Range: 2400-2480 MHz (2.4 GHz ISM band)
+# - Modulation: GFSK
+# - Bandwidth: 1 MHz
+# - 16 Channels with frequency hopping
+# - User must capture their own frequency hopping sequence
+
+# TEMPLATE FREQUENCIES (MUST BE CUSTOMIZED)
+# Replace these with YOUR drone's actual frequencies after capture
+f=2405000000,m=AM,bw=1000000,d=FrSky D16 Ch1 [TEMPLATE]
+f=2410000000,m=AM,bw=1000000,d=FrSky D16 Ch2 [TEMPLATE]
+f=2415000000,m=AM,bw=1000000,d=FrSky D16 Ch3 [TEMPLATE]
+f=2420000000,m=AM,bw=1000000,d=FrSky D16 Ch4 [TEMPLATE]
+f=2425000000,m=AM,bw=1000000,d=FrSky D16 Ch5 [TEMPLATE]
+f=2430000000,m=AM,bw=1000000,d=FrSky D16 Ch6 [TEMPLATE]
+f=2435000000,m=AM,bw=1000000,d=FrSky D16 Ch7 [TEMPLATE]
+f=2440000000,m=AM,bw=1000000,d=FrSky D16 Ch8 [TEMPLATE]
+f=2445000000,m=AM,bw=1000000,d=FrSky D16 Ch9 [TEMPLATE]
+f=2450000000,m=AM,bw=1000000,d=FrSky D16 Ch10 [TEMPLATE]
+f=2455000000,m=AM,bw=1000000,d=FrSky D16 Ch11 [TEMPLATE]
+f=2460000000,m=AM,bw=1000000,d=FrSky D16 Ch12 [TEMPLATE]
+f=2465000000,m=AM,bw=1000000,d=FrSky D16 Ch13 [TEMPLATE]
+f=2470000000,m=AM,bw=1000000,d=FrSky D16 Ch14 [TEMPLATE]
+f=2475000000,m=AM,bw=1000000,d=FrSky D16 Ch15 [TEMPLATE]
+f=2480000000,m=AM,bw=1000000,d=FrSky D16 Ch16 [TEMPLATE]
+
+# INSTRUCTIONS:
+# 1. Power on YOUR FrSky D16 transmitter and drone
+# 2. Use HackRF in receive mode to capture control signals
+# 3. Identify your specific frequency hopping pattern
+# 4. Replace the frequencies above with YOUR actual values
+# 5. Capture and save your RTH (Return to Home) signal
+# 6. Test in a safe, controlled environment
+# 
+# See PERSONAL_RECALL_SETUP.md for detailed instructions

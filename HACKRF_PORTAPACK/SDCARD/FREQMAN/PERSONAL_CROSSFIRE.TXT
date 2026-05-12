@@ -1,0 +1,46 @@
+# PortaPack Mayhem FREQMAN File
+# TBS Crossfire (CRSF) Protocol Template - FOR YOUR OWN DRONES ONLY
+# WARNING: Transmitting to drones you don't own is ILLEGAL
+#
+# This template requires customization with YOUR drone's specific frequencies
+# Follow the PERSONAL_RECALL_SETUP.md guide to capture your own signals
+#
+# TBS Crossfire Specifications:
+# - 868 MHz (EU) or 915 MHz (US) ISM bands
+# - Long-range digital protocol
+# - LoRa-based modulation
+# - Multiple power levels
+# - User must capture their own binding and settings
+
+# 915 MHz CRSF TEMPLATE (US/International)
+f=915000000,m=AM,bw=500000,d=CRSF 915M Center [TEMPLATE]
+f=913000000,m=AM,bw=500000,d=CRSF 915M-2 [TEMPLATE]
+f=917000000,m=AM,bw=500000,d=CRSF 915M+2 [TEMPLATE]
+f=911000000,m=AM,bw=500000,d=CRSF 915M-4 [TEMPLATE]
+f=919000000,m=AM,bw=500000,d=CRSF 915M+4 [TEMPLATE]
+
+# 868 MHz CRSF TEMPLATE (EU)
+f=868000000,m=AM,bw=500000,d=CRSF 868M Center [TEMPLATE]
+f=866000000,m=AM,bw=500000,d=CRSF 868M-2 [TEMPLATE]
+f=870000000,m=AM,bw=500000,d=CRSF 868M+2 [TEMPLATE]
+f=864000000,m=AM,bw=500000,d=CRSF 868M-4 [TEMPLATE]
+f=872000000,m=AM,bw=500000,d=CRSF 868M+4 [TEMPLATE]
+
+# INSTRUCTIONS:
+# TBS Crossfire uses frequency hopping and binding
+# This protocol is designed for security and long range
+#
+# For YOUR own drone:
+# 1. Determine if using 868 MHz (EU) or 915 MHz (US) version
+# 2. Power on YOUR TBS Crossfire transmitter
+# 3. Ensure YOUR drone is bound to YOUR transmitter
+# 4. Use HackRF in receive mode to capture signals
+# 5. Identify the center frequency and hopping pattern
+# 6. Replace template frequencies with YOUR actual values
+# 7. Capture YOUR RTH or failsafe command
+# 8. Test in a safe, controlled environment
+#
+# Note: Crossfire has built-in encryption and hopping
+# Replay requires capturing the complete protocol sequence
+#
+# See PERSONAL_RECALL_SETUP.md for detailed instructions

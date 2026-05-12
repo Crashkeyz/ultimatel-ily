@@ -1,0 +1,13 @@
+# PortaPack Mayhem FREQMAN File
+# GPS L1 Band - 1575.42 MHz
+# LEGAL USE: Receive-only monitoring (always legal)
+# WARNING: GPS jamming is illegal and dangerous
+# This file is for MONITORING ONLY
+
+f=1575420000,m=AM,bw=2000000,d=GPS L1 Center
+f=1575410000,m=AM,bw=2000000,d=GPS L1 -10kHz
+f=1575430000,m=AM,bw=2000000,d=GPS L1 +10kHz
+f=1575400000,m=AM,bw=2000000,d=GPS L1 -20kHz
+f=1575440000,m=AM,bw=2000000,d=GPS L1 +20kHz
+f=1575390000,m=AM,bw=2000000,d=GPS L1 -30kHz
+f=1575450000,m=AM,bw=2000000,d=GPS L1 +30kHz

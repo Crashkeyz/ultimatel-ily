@@ -1,0 +1,38 @@
+# PortaPack Mayhem FREQMAN File
+# Comprehensive Multi-Band Drone Detection
+# LEGAL USE: Receive-only monitoring (always legal)
+# Key frequencies across all drone bands for quick scanning
+
+# 433 MHz ISM Band - RC Control
+f=433920000,m=AM,bw=150000,d=433.92 ISM RC
+
+# 868 MHz ISM Band (EU)
+f=868000000,m=AM,bw=200000,d=868.0 EU ISM
+
+# 915 MHz ISM Band - RC/Telemetry
+f=915000000,m=AM,bw=200000,d=915.0 ISM RC
+
+# 1.2 GHz - FPV Video
+f=1258000000,m=WFM,bw=6000000,d=1.258G FPV
+
+# GPS L1
+f=1575420000,m=AM,bw=2000000,d=1575.42 GPS L1
+
+# 2.4 GHz - DJI/WiFi Control
+f=2400000000,m=AM,bw=1000000,d=2.4G Lower
+f=2450000000,m=AM,bw=1000000,d=2.45G Center
+f=2480000000,m=AM,bw=1000000,d=2.48G Upper
+
+# 5.8 GHz - FPV Video (Most Common)
+f=5658000000,m=WFM,bw=6000000,d=5.658G Race R1
+f=5695000000,m=WFM,bw=6000000,d=5.695G Race R2
+f=5732000000,m=WFM,bw=6000000,d=5.732G Race R3
+f=5769000000,m=WFM,bw=6000000,d=5.769G Race R4
+f=5806000000,m=WFM,bw=6000000,d=5.806G Race R5
+f=5843000000,m=WFM,bw=6000000,d=5.843G Race R6
+f=5880000000,m=WFM,bw=6000000,d=5.880G Race R7
+f=5917000000,m=WFM,bw=6000000,d=5.917G Race R8
+f=5865000000,m=WFM,bw=6000000,d=5.865G Band A1
+f=5845000000,m=WFM,bw=6000000,d=5.845G Band A2
+f=5825000000,m=WFM,bw=6000000,d=5.825G Band A3
+f=5805000000,m=WFM,bw=6000000,d=5.805G Band A4
